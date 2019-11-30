@@ -1,0 +1,106 @@
+<div class="profile_details_part">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-4">
+        <div class="edit_content_left">
+          <div class="edit_header_bg">
+            <img
+              src="../../assets/images/user_bg.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="edit_content text-center">
+            <div class="edit_img">
+              <img src="../../assets/images/user_img.png" alt="" />
+            </div>
+            <h4>{{ user.username | titlecase }}</h4>
+            <p>{{ user.emailAddress }}</p>
+            <h3>Location</h3>
+            <p>
+              {{ user.location }}
+            </p>
+            <h3>Introduction</h3>
+            <p>
+              {{ user.introduction }}
+            </p>
+
+            <h3>Looking For</h3>
+            <p>
+              {{ user.lookingFor }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="edit_content_right">
+          <div *ngIf="editForm.dirty" class="alert alert-info" role="alert">
+            <b>Information:</b> You have made changes. Any unsaved changes will be lost.
+          </div>
+          <h2>Edit Profile</h2>
+          <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+            <div class="form-row d-flex">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Username</label>
+                <input
+                  [(ngModel)]="user.username"
+                  name="username"
+                  type="text"
+                  class="form-control"
+                  id="inputEmail4"
+                  required
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Email Address</label>
+                <input
+                  [(ngModel)]="user.emailAddress"
+                  name="emailAddress"
+                  type="email"
+                  class="form-control"
+                  id="inputPassword4"
+                  required
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Location</label>
+              <input
+                [(ngModel)]="user.location"
+                name="location"
+                type="text"
+                class="form-control"
+                id="inputAddress"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="introduction">Introduction</label>
+              <textarea
+                [(ngModel)]="user.introduction"
+                name="introduction"
+                class="form-control"
+                id="introduction"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="lookingFor">Looking For</label>
+              <textarea
+                [(ngModel)]="user.lookingFor"
+                name="lookingFor"
+                class="form-control"
+                id="lookingFor"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

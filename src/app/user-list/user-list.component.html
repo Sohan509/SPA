@@ -1,0 +1,26 @@
+<div class="users_part">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-11">
+        <div class="users_content">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let client of users">
+                <th scope="row">{{ client.username }}</th>
+                <td>{{ client.emailAddress }}</td>
+                <td>{{ client.location }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

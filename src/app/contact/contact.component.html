@@ -1,0 +1,182 @@
+<div class="contact_part">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-12 m-0 p-0">
+        <img
+          src="../../assets/images/contact_img.png"
+          class="img-fluid"
+          alt=""
+        />
+      </div>
+      <div class="col-lg-5 col-md-10">
+        <div class="contact_content">
+          <div class="login_form_part">
+            <h2>Contact With Us</h2>
+            <form [formGroup]="sendMailForm" (ngSubmit)="send()">
+              <div class="form-row">
+                <div class="col-lg-12 col-md-12 mb-3">
+                  <label for="Name">Name</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend2">
+                        <img
+                          src="../../assets/images/user-shape.svg"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </span>
+                    </div>
+                    <input
+                      [ngClass]="{
+                        'is-invalid':
+                          sendMailForm.get('Name').errors &&
+                          sendMailForm.get('Name').touched
+                      }"
+                      formControlName="Name"
+                      type="text"
+                      class="form-control"
+                      id="Name"
+                      placeholder="Name"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      * Please enter your name.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-lg-12 col-md-12 mb-3">
+                  <label for="Email">Email Address</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend2">
+                        <img
+                          src="../../assets/images/at.svg"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </span>
+                    </div>
+                    <input
+                      [ngClass]="{
+                        'is-invalid':
+                          sendMailForm.get('Email').errors &&
+                          sendMailForm.get('Email').touched
+                      }"
+                      formControlName="Email"
+                      type="text"
+                      class="form-control"
+                      id="Email"
+                      placeholder="Email Address"
+                      required
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        sendMailForm.get('Email').hasError('required') &&
+                        sendMailForm.get('Email').touched
+                      "
+                    >
+                      * Please enter an email address.
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        sendMailForm.get('Email').hasError('email') &&
+                        sendMailForm.get('Email').touched
+                      "
+                    >
+                      * Please enter a valid email.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row password_input">
+                <div class="col-lg-12 col-md-12 mb-3">
+                  <label for="Password">User Password</label>
+                  <div id="show" class="show_button" (click)="toggle()">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend2">
+                        <img
+                          src="../../assets/images/house-key.svg"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </span>
+                    </div>
+                    <input
+                      [ngClass]="{
+                        'is-invalid':
+                          sendMailForm.get('password').errors &&
+                          sendMailForm.get('password').touched
+                      }"
+                      formControlName="password"
+                      type="password"
+                      class="form-control"
+                      id="Password"
+                      placeholder="Enter Password"
+                      required
+                    />
+                    <div
+                      id="error_msg"
+                      class="invalid-feedback"
+                      *ngIf="
+                        sendMailForm.get('password').hasError('required') &&
+                        sendMailForm.get('password').touched
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-lg-12 col-md-12 mb-3">
+                  <label for="Subject">Subject</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend2">
+                        <img
+                          src="../../assets/images/title.svg"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </span>
+                    </div>
+                    <input
+                      formControlName="Subject"
+                      type="text"
+                      class="form-control"
+                      id="Subject"
+                      placeholder="Subject"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="textarea">Message</label>
+                <textarea
+                  formControlName="Message"
+                  id="textarea"
+                  class="form-control"
+                  id="textarea"
+                  rows="3"
+                  placeholder="Enter your message"
+                  required
+                ></textarea>
+              </div>
+              <div class="alert alert-info" role="alert">
+                Before submiting your mail please turn on less secure app permission on gmail.
+              </div>
+              <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

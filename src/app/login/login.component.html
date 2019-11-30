@@ -1,0 +1,307 @@
+<!-- login part start -->
+<section class="login_part">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-md-10">
+        <div class="login_part_container">
+          <div class="row">
+            <div class="col-lg-6 col-md-10 order-lg-1 order-2">
+              <div *ngIf="!userLogin" class="login_form_part">
+                <h2>Welcome to Coddez</h2>
+                <p>
+                  Create your account to get into it.
+                </p>
+                <form [formGroup]="registerForm" (ngSubmit)="register()">
+                  <div class="form-row">
+                    <div class="col-lg-12 col-md-12 mb-3">
+                      <label for="Username">Username</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            id="inputGroupPrepend2"
+                          >
+                            <img
+                              src="../../assets/images/user-shape.svg"
+                              class="img-fluid"
+                              alt=""
+                            />
+                          </span>
+                        </div>
+                        <input
+                          [ngClass]="{
+                            'is-invalid':
+                              registerForm.get('username').errors &&
+                              registerForm.get('username').touched
+                          }"
+                          formControlName="username"
+                          type="text"
+                          class="form-control"
+                          id="Username"
+                          placeholder="Username"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          * Please choose a username
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-lg-12 col-md-12 mb-3">
+                      <label for="Email">Email Address</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            id="inputGroupPrepend2"
+                          >
+                            <img
+                              src="../../assets/images/at.svg"
+                              class="img-fluid"
+                              alt=""
+                            />
+                          </span>
+                        </div>
+                        <input
+                          [ngClass]="{
+                            'is-invalid':
+                              registerForm.get('emailAddress').errors &&
+                              registerForm.get('emailAddress').touched
+                          }"
+                          formControlName="emailAddress"
+                          type="text"
+                          class="form-control"
+                          id="Email"
+                          placeholder="Enter Your Email Address"
+                          required
+                        />
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="
+                            registerForm
+                              .get('emailAddress')
+                              .hasError('required') &&
+                            registerForm.get('emailAddress').touched
+                          "
+                        >
+                          * Please enter an email address.
+                        </div>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="
+                            registerForm
+                              .get('emailAddress')
+                              .hasError('email') &&
+                            registerForm.get('emailAddress').touched
+                          "
+                        >
+                          * Please enter a valid email.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row password_input">
+                    <div class="col-lg-12 col-md-12 mb-3">
+                      <label for="Password">Create Password</label>
+                      <div id="show" class="show_button" (click)="toggle()">
+                        <fa-icon [icon]="faEye"></fa-icon>
+                      </div>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            id="inputGroupPrepend2"
+                          >
+                            <img
+                              src="../../assets/images/house-key.svg"
+                              class="img-fluid"
+                              alt=""
+                            />
+                          </span>
+                        </div>
+                        <input
+                          [ngClass]="{
+                            'is-invalid':
+                              registerForm.get('password').errors &&
+                              registerForm.get('password').touched
+                          }"
+                          formControlName="password"
+                          type="password"
+                          class="form-control"
+                          id="Password"
+                          placeholder="Create New Password"
+                          required
+                        />
+                        <div
+                          id="error_msg"
+                          class="invalid-feedback"
+                          *ngIf="
+                            registerForm.get('password').hasError('required') &&
+                            registerForm.get('password').touched
+                          "
+                        >
+                          * Please enter password.
+                        </div>
+                        <div
+                          id="error_msg"
+                          class="invalid-feedback"
+                          *ngIf="
+                            registerForm
+                              .get('password')
+                              .hasError('minlength') &&
+                            registerForm.get('password').touched
+                          "
+                        >
+                          * should be minimum 6 characters.
+                        </div>
+                        <div
+                          id="error_msg"
+                          class="invalid-feedback"
+                          *ngIf="
+                            registerForm
+                              .get('password')
+                              .hasError('maxlength') &&
+                            registerForm.get('password').touched
+                          "
+                        >
+                          * should be maximum 10 characters.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button                    
+                    type="submit"
+                    class="btn btn-primary register_btn"
+                  >
+                    Sign Up
+                  </button>
+                </form>
+                <h3>
+                  Already have an account?
+                  <span (click)="loginToggle()">Login</span>
+                </h3>
+              </div>
+
+              <div *ngIf="userLogin" class="login_form_part">
+                <h2>Get into your account</h2>
+                <p>
+                  Get the most exiciting features and tusks.
+                </p>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                  <div class="form-row">
+                    <div class="col-lg-12 col-md-12 mb-3">
+                      <label for="Email">Email Address</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            id="inputGroupPrepend2"
+                          >
+                            <img
+                              src="../../assets/images/at.svg"
+                              class="img-fluid"
+                              alt=""
+                            />
+                          </span>
+                        </div>
+                        <input
+                          formControlName="emailAddress"
+                          type="text"
+                          class="form-control"
+                          id="Email"
+                          placeholder="Enter Email Address"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row password_input">
+                    <div class="col-lg-12 col-md-12 mb-3">
+                      <label for="Password">User Password</label>
+                      <div id="show" class="show_button" (click)="toggle()">
+                        <fa-icon [icon]="faEye"></fa-icon>
+                      </div>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            id="inputGroupPrepend2"
+                          >
+                            <img
+                              src="../../assets/images/house-key.svg"
+                              class="img-fluid"
+                              alt=""
+                            />
+                          </span>
+                        </div>
+                        <input
+                          formControlName="password"
+                          type="password"
+                          class="form-control"
+                          id="Password"
+                          placeholder="Enter Password"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <h3>
+                  Don't have any account?
+                  <span (click)="loginToggle()">Sign Up</span>
+                </h3>
+              </div>
+            </div>
+            <div class="col-lg-6 order-lg-2 order-1">
+              <div
+                class="login_img_slider"
+                [flickity]="{
+                  cellAlign: 'left',
+                  freeScroll: false,
+                  contain: true,
+                  autoPlay: true,
+                  pauseAutoPlayOnHover: false,
+                  unpausePlayer: false,
+                  prevNextButtons: false,
+                  pageDots: true,
+                  wrapAround: true
+                }"
+              >
+                <div class="col-lg-12 col-md-12 col-sm-6 m-0 p-0">
+                  <div class="">
+                    <img
+                      src="../../assets/images/login-img-3.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-6 m-0 p-0">
+                  <div class="">
+                    <img
+                      src="../../assets/images/login-img.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-6 m-0 p-0">
+                  <div class="">
+                    <img
+                      src="../../assets/images/login-img-2.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- login part end -->
